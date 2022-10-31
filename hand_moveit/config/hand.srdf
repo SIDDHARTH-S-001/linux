@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="hand">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="index">
+        <joint name="i_dip_pitch"/>
+        <joint name="i_mcp_pitch"/>
+        <joint name="i_mcp_yaw"/>
+        <joint name="i_pip_pitch"/>
+        <joint name="virtual"/>
+        <joint name="Rigid1"/>
+        <joint name="Rigid11"/>
+        <joint name="Rigid16"/>
+        <joint name="Rigid18"/>
+        <joint name="Rigid7"/>
+    </group>
+    <group name="middle">
+        <joint name="m_dip_pitch"/>
+        <joint name="m_mcp_pitch"/>
+        <joint name="m_mcp_yaw"/>
+        <joint name="m_pip_pitch"/>
+        <joint name="Rigid19"/>
+        <joint name="Rigid22"/>
+        <joint name="Rigid24"/>
+        <joint name="Rigid26"/>
+        <joint name="virtual"/>
+    </group>
+    <group name="ring">
+        <joint name="r_dip_pitch"/>
+        <joint name="r_mcp_pitch"/>
+        <joint name="r_mcp_yaw"/>
+        <joint name="r_pip_pitch"/>
+        <joint name="Rigid27"/>
+        <joint name="Rigid30"/>
+        <joint name="Rigid32"/>
+        <joint name="Rigid35"/>
+        <joint name="virtual"/>
+    </group>
+    <group name="pinky">
+        <joint name="s_dip_pitch"/>
+        <joint name="s_mcp_pitch"/>
+        <joint name="s_mcp_yaw"/>
+        <joint name="s_pip_pitch"/>
+        <joint name="Rigid39"/>
+        <joint name="Rigid36"/>
+        <joint name="Rigid41"/>
+        <joint name="Rigid43"/>
+        <joint name="virtual"/>
+    </group>
+    <group name="thumb">
+        <joint name="t_mcp_pitch"/>
+        <joint name="t_mcp_yaw"/>
+        <joint name="t_pip_pitch"/>
+        <joint name="virtual"/>
+        <joint name="Rigid6"/>
+        <joint name="Rigid3"/>
+        <joint name="Rigid1"/>
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="victory" group="thumb">
+        <joint name="t_mcp_pitch" value="-0.0174"/>
+        <joint name="t_mcp_yaw" value="0.778"/>
+        <joint name="t_pip_pitch" value="0.3298"/>
+    </group_state>
+    <group_state name="all open" group="thumb">
+        <joint name="t_mcp_pitch" value="-0.0174"/>
+        <joint name="t_mcp_yaw" value="0.5728"/>
+        <joint name="t_pip_pitch" value="0"/>
+    </group_state>
+    <group_state name="spidy" group="middle">
+        <joint name="m_dip_pitch" value="-1.51"/>
+        <joint name="m_mcp_pitch" value="1.0587"/>
+        <joint name="m_mcp_yaw" value="-0.0868"/>
+        <joint name="m_pip_pitch" value="1.4059"/>
+    </group_state>
+    <group_state name="phone" group="pinky">
+        <joint name="s_dip_pitch" value="0"/>
+        <joint name="s_mcp_pitch" value="0"/>
+        <joint name="s_mcp_yaw" value="0.2256"/>
+        <joint name="s_pip_pitch" value="0"/>
+    </group_state>
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual" type="fixed" parent_frame="world" child_link="base_link"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="cmc_link_v4_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="i_mcp_pitch_link_v1_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="i_mcp_yaw_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="m_mcp_pitch_link_v1_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="m_mcp_yaw_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="r_mcp_pitch_link_v1_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="r_mcp_yaw_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="s_mcp_pitch_link_v1_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="s_mcp_yaw_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="cmc_link_v4_1" link2="i_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="cmc_link_v4_1" link2="m_connector_2_v1_1" reason="Never"/>
+    <disable_collisions link1="cmc_link_v4_1" link2="m_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="cmc_link_v4_1" link2="r_mcp_pitch_link_v1_1" reason="Never"/>
+    <disable_collisions link1="cmc_link_v4_1" link2="r_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="cmc_link_v4_1" link2="s_connector_1_v1_1" reason="Never"/>
+    <disable_collisions link1="cmc_link_v4_1" link2="s_mcp_pitch_link_v1_1" reason="Never"/>
+    <disable_collisions link1="cmc_link_v4_1" link2="s_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="cmc_link_v4_1" link2="t_connector_1_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="i_connector_1_v1_1" link2="i_connector_2_v1_1" reason="Never"/>
+    <disable_collisions link1="i_connector_1_v1_1" link2="i_dip_link_v2_1" reason="Never"/>
+    <disable_collisions link1="i_connector_1_v1_1" link2="i_mcp_pitch_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="i_connector_1_v1_1" link2="i_pip_pitch_link_v4_1" reason="Adjacent"/>
+    <disable_collisions link1="i_connector_2_v1_1" link2="i_dip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="i_connector_2_v1_1" link2="i_pip_pitch_link_v4_1" reason="Adjacent"/>
+    <disable_collisions link1="i_connector_2_v1_1" link2="r_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="i_connector_3_v1_1" link2="i_dip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="i_connector_3_v1_1" link2="i_tip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="i_mcp_pitch_link_v1_1" link2="i_mcp_yaw_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="i_mcp_pitch_link_v1_1" link2="s_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="i_mcp_yaw_link_v1_1" link2="m_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="i_mcp_yaw_link_v1_1" link2="r_connector_2_v1_1" reason="Never"/>
+    <disable_collisions link1="i_mcp_yaw_link_v1_1" link2="r_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="i_mcp_yaw_link_v1_1" link2="s_mcp_pitch_link_v1_1" reason="Never"/>
+    <disable_collisions link1="i_mcp_yaw_link_v1_1" link2="s_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="m_connector_1_v1_1" link2="m_connector_2_v1_1" reason="Never"/>
+    <disable_collisions link1="m_connector_1_v1_1" link2="m_dip_link_v2_1" reason="Never"/>
+    <disable_collisions link1="m_connector_1_v1_1" link2="m_mcp_pitch_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="m_connector_1_v1_1" link2="m_pip_pitch_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="m_connector_2_v1_1" link2="m_dip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="m_connector_2_v1_1" link2="m_pip_pitch_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="m_connector_2_v1_1" link2="s_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="m_connector_3_v1_1" link2="m_dip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="m_connector_3_v1_1" link2="m_tip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="m_mcp_pitch_link_v1_1" link2="m_mcp_yaw_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="m_mcp_yaw_link_v1_1" link2="r_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="m_mcp_yaw_link_v1_1" link2="s_connector_2_v1_1" reason="Never"/>
+    <disable_collisions link1="m_mcp_yaw_link_v1_1" link2="s_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="m_mcp_yaw_link_v1_1" link2="t_connector_1_v1_1" reason="Never"/>
+    <disable_collisions link1="r_connector_1_v1_1" link2="r_connector_2_v1_1" reason="Never"/>
+    <disable_collisions link1="r_connector_1_v1_1" link2="r_dip_link_v2_1" reason="Never"/>
+    <disable_collisions link1="r_connector_1_v1_1" link2="r_mcp_pitch_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="r_connector_1_v1_1" link2="r_pip_pitch_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="r_connector_2_v1_1" link2="r_dip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="r_connector_2_v1_1" link2="r_pip_pitch_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="r_connector_3_v1_1" link2="r_dip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="r_connector_3_v1_1" link2="r_tip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="r_mcp_pitch_link_v1_1" link2="r_mcp_yaw_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="r_mcp_yaw_link_v1_1" link2="s_mcp_yaw_link_v1_1" reason="Never"/>
+    <disable_collisions link1="r_mcp_yaw_link_v1_1" link2="t_connector_1_v1_1" reason="Never"/>
+    <disable_collisions link1="r_mcp_yaw_link_v1_1" link2="t_mcp_v5_1" reason="Never"/>
+    <disable_collisions link1="s_connector_1_v1_1" link2="s_connector_2_v1_1" reason="Never"/>
+    <disable_collisions link1="s_connector_1_v1_1" link2="s_dip_link_v2_1" reason="Never"/>
+    <disable_collisions link1="s_connector_1_v1_1" link2="s_mcp_pitch_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="s_connector_1_v1_1" link2="s_pip_pitch_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="s_connector_2_v1_1" link2="s_dip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="s_connector_2_v1_1" link2="s_pip_pitch_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="s_connector_3_v1_1" link2="s_dip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="s_connector_3_v1_1" link2="s_tip_link_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="s_mcp_pitch_link_v1_1" link2="s_mcp_yaw_link_v1_1" reason="Adjacent"/>
+    <disable_collisions link1="s_mcp_pitch_link_v1_1" link2="t_connector_1_v1_1" reason="Never"/>
+    <disable_collisions link1="s_mcp_yaw_link_v1_1" link2="t_connector_1_v1_1" reason="Never"/>
+    <disable_collisions link1="s_mcp_yaw_link_v1_1" link2="t_mcp_v5_1" reason="Never"/>
+    <disable_collisions link1="t_connector_1_v1_1" link2="t_mcp_v5_1" reason="Adjacent"/>
+    <disable_collisions link1="t_connector_2_v1_1" link2="t_pip_link_v5_1" reason="Adjacent"/>
+    <disable_collisions link1="t_connector_2_v1_1" link2="t_tip_v2_1" reason="Adjacent"/>
+    <disable_collisions link1="t_mcp_v5_1" link2="t_pip_link_v5_1" reason="Adjacent"/>
+</robot>

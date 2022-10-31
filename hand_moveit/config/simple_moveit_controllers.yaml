@@ -1,0 +1,45 @@
+controller_list:
+  - name: index_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - i_mcp_yaw
+      - i_mcp_pitch
+      - i_pip_pitch
+      - i_dip_pitch
+  - name: middle_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - m_mcp_yaw
+      - m_mcp_pitch
+      - m_pip_pitch
+      - m_dip_pitch
+  - name: ring_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - r_mcp_yaw
+      - r_mcp_pitch
+      - r_pip_pitch
+      - r_dip_pitch
+  - name: pinky_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - s_mcp_yaw
+      - s_mcp_pitch
+      - s_pip_pitch
+      - s_dip_pitch
+  - name: thumb_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - t_mcp_pitch
+      - t_mcp_yaw
+      - t_pip_pitch
