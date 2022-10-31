@@ -1,0 +1,112 @@
+<?xml version="1.0" ?>
+<robot name="wheely" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find wheely_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find wheely_description)/urdf/wheely.trans" />
+<xacro:include filename="$(find wheely_description)/urdf/wheely.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="1.545488639621925e-17 1.3795088508206209e-15 0.051480308846042926"/>
+    <mass value="1.6477540498693837"/>
+    <inertia ixx="0.003393" ixy="-0.0" ixz="0.0" iyy="0.003404" iyz="0.0" izz="0.005938"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheely_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="plastic_glossy_white"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://wheely_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="LIDAR_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-3.226802273235357e-17 -2.1315391519574705e-17 0.010995989304812812"/>
+    <mass value="0.046998226097703315"/>
+    <inertia ixx="8e-06" ixy="-0.0" ixz="0.0" iyy="8e-06" iyz="0.0" izz="1.2e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0 0.0 -0.1"/>
+    <geometry>
+      <mesh filename="package://wheely_description/meshes/LIDAR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="plastic_glossy_grey"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0 0.0 -0.1"/>
+    <geometry>
+      <mesh filename="package://wheely_description/meshes/LIDAR_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="1.5103871126513457e-18 -0.01250000000000008 1.3877787807814457e-17"/>
+    <mass value="0.18260507298990675"/>
+    <inertia ixx="0.000124" ixy="0.0" ixz="-0.0" iyy="0.000228" iyz="-0.0" izz="0.000124"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0 0.075 -0.05"/>
+    <geometry>
+      <mesh filename="package://wheely_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="rubber_soft"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0 0.075 -0.05"/>
+    <geometry>
+      <mesh filename="package://wheely_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-1.3090433312895435e-17 0.012499999999999983 3.469446951953614e-17"/>
+    <mass value="0.18260507298990675"/>
+    <inertia ixx="0.000124" ixy="0.0" ixz="-0.0" iyy="0.000228" iyz="0.0" izz="0.000124"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.0 -0.075 -0.05"/>
+    <geometry>
+      <mesh filename="package://wheely_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="rubber_soft"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.0 -0.075 -0.05"/>
+    <geometry>
+      <mesh filename="package://wheely_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="lidar_rot" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.1"/>
+  <parent link="base_link"/>
+  <child link="LIDAR_1"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+</joint>
+
+<joint name="right_drive" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0 -0.075 0.05"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="left_drive" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0 0.075 0.05"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="-0.0 1.0 0.0"/>
+</joint>
+
+</robot>
