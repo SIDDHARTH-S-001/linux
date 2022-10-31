@@ -1,0 +1,2 @@
+import pywhatkit
+pywhatkit.text_to_handwriting("this is the 1st argument where u replace this text with the one u want to convert into handwriting, while the next argument is going to be the colour so for blue its rgb=(0,0,255). when u run this program the image will get stored in the same folder of this python file with name pywhatkit.png",rgb=(0,0,255))
