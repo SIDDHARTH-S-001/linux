@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<robot name="simple_robot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<transmission name="left_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="left_drive">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="left_actr">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="right_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="right_drive">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="right_actr">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+</robot>
