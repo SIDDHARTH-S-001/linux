@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="live_class" type="color_filter.py" name="color_filter"  output="screen">
+    </node>
+</launch>

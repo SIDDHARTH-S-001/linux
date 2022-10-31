@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="live_classes" type="load_image.py" name="load_image" output="screen">
+    </node>
+</launch>
