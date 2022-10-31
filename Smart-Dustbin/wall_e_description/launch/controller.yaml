@@ -1,0 +1,23 @@
+wall_e: #  REMEMBER this has to be the same name as the robot name in urdf file.
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  right_drive_controller:
+    type: effort_controllers/JointPositionController
+    joint: right_drive
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  left_drive_controller:
+    type: effort_controllers/JointPositionController
+    joint: left_drive
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  pan_joints_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - pan_joint
+      - left_arm
+      - right_arm
+

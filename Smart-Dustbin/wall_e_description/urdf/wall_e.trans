@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<robot name="wall_e" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<transmission name="left_drive_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="left_drive">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="left_drive_actr">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="right_drive_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="right_drive">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="right_drive_actr">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="pan_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="pan_joint">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="pan_joint_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="left_arm_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="left_arm">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="left_arm_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="right_arm_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="right_arm">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="right_arm_actr">
+    <hardwareInterface>PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+</robot>

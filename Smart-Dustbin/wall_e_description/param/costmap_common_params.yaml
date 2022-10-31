@@ -1,0 +1,17 @@
+obstacle_range: 5.0
+raytrace_range: 3.5
+
+map_topic: map
+global_frame: odom
+
+subscribe_to_updates: true
+
+#footprint: [[-0.105, -0.105], [-0.105, 0.105], [0.041, 0.105], [0.041, -0.105]]
+robot_radius: 0.175
+
+inflation_radius: 0.5
+cost_scaling_factor: 2.0
+
+map_type: costmap
+observation_sources: scan
+scan: {sensor_frame: ydlidar_x4, data_type: LaserScan, topic: /scan, marking: true, clearing: true}

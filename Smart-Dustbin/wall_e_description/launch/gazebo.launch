@@ -1,0 +1,29 @@
+<launch>
+
+<!-- roslaunch wall_e_description gazebo.launch  lockstep:=true -->
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find wall_e_description)/urdf/wall_e.xacro"/>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model wall_e"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find wall_e_description)/world/simple_map/simple_map.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+<!-- convert joint states to TF transforms for rviz, etc -->
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" ns="/wall_e">
+  <remap from="/joint_states" to="/wall_e/joint_states"/>
+</node>
+
+<!-- Load joint controller configurations from YAML file to parameter server -->
+<rosparam file="$(find wall_e_description)/launch/controller.yaml" command="load"/>
+
+<!-- load the controllers <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/wall_e" args="left_drive_controller right_drive_controller pan_joints_controller joint_state_controller"/>
+-->
+
+</launch>
